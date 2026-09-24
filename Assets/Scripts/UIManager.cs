@@ -13,6 +13,10 @@ public class UIManager : MonoBehaviour
     [Header("Game Over UI")]
     [SerializeField] private GameObject gameOverPanel;
 
+    [Header("End Level Panel")]
+    [SerializeField] private GameObject endLevelPanel;
+    [SerializeField] private TMP_Text maxScoreText;
+
     [Header("Player")]
     // The player health bar is always visible, so only its value needs to be updated.
     [SerializeField] private Slider playerHealthBar;
@@ -48,7 +52,7 @@ public class UIManager : MonoBehaviour
         transitionAnimator.Play("imagem-de-transicao-clareando");
     }
 
-    private void DarkenTransitionImage()
+    public void DarkenTransitionImage()
     {
         transitionAnimator.Play("imagem-de-transicao-escurecendo");
     }
@@ -93,6 +97,16 @@ public class UIManager : MonoBehaviour
     public void UpdateComboCounter(int comboValue)
     {
         comboCounterText.text = comboValue.ToString() + "X";
+    }
+
+    public void MaxCombo(int comboMax)
+    {
+        maxScoreText.text = comboMax.ToString() + "X";
+    }
+
+    public void EnableEndLevelPanel()
+    {
+        endLevelPanel.SetActive(true);
     }
 
 }

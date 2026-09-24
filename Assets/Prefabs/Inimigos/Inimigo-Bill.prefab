@@ -380,11 +380,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69330fbe61f0f184a8447c187374de61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpeed: 1
+  enemySpeed: 1.5
   attackDistance: 1
   maxAttackInterval: 0.9
   enemyAttackCount: 2
   currentEnemyAttack: 0
+  minX: -7.3
+  maxX: 69.3
+  minY: -3.36
+  maxY: 0.42
 --- !u!114 &6865391669729756289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,6 +407,10 @@ MonoBehaviour:
   foodDropChance: 60
   foodDrops:
   - {fileID: 5097952340037587131, guid: be90cc1454e7cff4ca0b293042ffc78f, type: 3}
+  minX: -7.3
+  maxX: 69.3
+  minY: -1.5
+  maxY: -3.95
 --- !u!1 &6745698228587103248
 GameObject:
   m_ObjectHideFlags: 0

@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c347fed0dcb1849815c7e5b01cbd51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 0
+  attackDamage: 1
 --- !u!1 &2553638755447487851
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,6 +233,10 @@ MonoBehaviour:
   maxAttackInterval: 0.9
   enemyAttackCount: 2
   currentEnemyAttack: 0
+  minX: -7.3
+  maxX: 69.3
+  minY: -3.36
+  maxY: 0.42
 --- !u!114 &9018978046528613888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +257,10 @@ MonoBehaviour:
   - {fileID: 5656984782629328081, guid: dcd6cf646b9991e439adcdb09813f60a, type: 3}
   - {fileID: 6653105512186242893, guid: e6762b9391efdee4fa0a3a348bc34822, type: 3}
   - {fileID: 5097952340037587131, guid: be90cc1454e7cff4ca0b293042ffc78f, type: 3}
+  minX: -7.3
+  maxX: 69.3
+  minY: -1.5
+  maxY: -3.95
 --- !u!1 &3010872617763500422
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c347fed0dcb1849815c7e5b01cbd51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 0
+  attackDamage: 1
 --- !u!1 &4729618871332705020
 GameObject:
   m_ObjectHideFlags: 0

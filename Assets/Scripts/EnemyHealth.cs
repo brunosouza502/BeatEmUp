@@ -19,6 +19,12 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private int foodDropChance;
     [SerializeField] private GameObject[] foodDrops; // Array of food types.
 
+    [Header("Food Spawn Limits")]
+    [SerializeField] private float minX;
+    [SerializeField] private float maxX;
+    [SerializeField] private float minY;
+    [SerializeField] private float maxY;
+
     void Start()
     {
         // Initializes the enemy as alive and sets current health to maximum health.
@@ -66,9 +72,15 @@ public class EnemyHealth : MonoBehaviour
         // Checks whether the random number is within the food drop chance.
         if(randomNumber <= foodDropChance)
         {
+            Vector2 spawnPosition = new Vector2(
+                                        Mathf.Clamp(transform.position.x, minX, maxX),
+                                        Mathf.Clamp(transform.position.y, minY, maxY));
+
             GameObject selectedFood = foodDrops[Random.Range(0, foodDrops.Length)]; // Randomly selects a food type.
             Debug.Log("Selected food: " + selectedFood.name);
-            Instantiate(selectedFood, transform.position, transform.rotation); // Instantiates the selected food at the enemy's position.
+            //Instantiate(selectedFood, transform.position, transform.rotation); // Instantiates the selected food at the enemy's position.
+            Instantiate(selectedFood, spawnPosition, transform.rotation);
+
         }
     }
 

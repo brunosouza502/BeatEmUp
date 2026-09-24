@@ -24,6 +24,12 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private int enemyAttackCount; // Includes the strong and weak punches.
     [SerializeField] private int currentEnemyAttack;
 
+    [Header("Movement Limits")]
+    [SerializeField] private float minX;
+    [SerializeField] private float maxX;
+    [SerializeField] private float minY;
+    [SerializeField] private float maxY;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -90,6 +96,13 @@ public class EnemyController : MonoBehaviour
             rigidbody2D.linearVelocity = movementDirection * enemySpeed;
             animator.SetTrigger("andando");// The "andando" trigger is defined in the Animator.
             //canAttack = false;
+
+
+            // Limits horizontal player movement.
+            rigidbody2D.position = new Vector2(Mathf.Clamp(rigidbody2D.position.x, minX, maxX), rigidbody2D.position.y);
+
+            // Limits vertical player movement.
+            rigidbody2D.position = new Vector2(rigidbody2D.position.x, Mathf.Clamp(rigidbody2D.position.y, minY, maxY));
         }
         else
         {

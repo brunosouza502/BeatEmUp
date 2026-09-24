@@ -266,6 +266,10 @@ MonoBehaviour:
   maxAttackInterval: 0.9
   enemyAttackCount: 2
   currentEnemyAttack: 0
+  minX: -7.3
+  maxX: 69.3
+  minY: -3.36
+  maxY: 0.42
 --- !u!114 &8277691023542538872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +288,10 @@ MonoBehaviour:
   foodDropChance: 90
   foodDrops:
   - {fileID: 6653105512186242893, guid: e6762b9391efdee4fa0a3a348bc34822, type: 3}
+  minX: -7.3
+  maxX: 69.3
+  minY: -1.5
+  maxY: -3.95
 --- !u!1 &7633860916303626440
 GameObject:
   m_ObjectHideFlags: 0

@@ -69,6 +69,7 @@ public class PlayerHealth : MonoBehaviour
             // Player damage sound.
             SoundManager.instance.playerTakingDamage.Play();
 
+
             if (currentHealth <= 0)
            {
                 playerAlive = false;

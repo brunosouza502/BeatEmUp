@@ -29,6 +29,12 @@ public class PlayerController : MonoBehaviour
     private float currentComboTime;
     private int totalCombo; // Stores the player's longest combo, displayed at the end of the game.
 
+    /*public int TotalCombo
+    {
+        get => totalCombo;
+        set => totalCombo = value;
+    }*/
+
     // Punch sequence when the player keeps pressing the punch button.
     [SerializeField] private float maxSequenceTime;
     private float currentSequenceTime;
@@ -73,8 +79,7 @@ public class PlayerController : MonoBehaviour
                 FlipPlayer();
                 MovePlayer();
 
-                RunComboTimer();
-                
+                RunComboTimer(); 
             }
             else
             {
@@ -124,6 +129,7 @@ public class PlayerController : MonoBehaviour
                 if (combo > totalCombo)
                 {
                     totalCombo = combo; // Stores the player's longest combo.
+                    UIManager.instance.MaxCombo(totalCombo);//Display longest combo in score screen
                 }
                 
                 combo = 0; // Resets the player's combo.
