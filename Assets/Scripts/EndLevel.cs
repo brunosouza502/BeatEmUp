@@ -16,8 +16,9 @@ public class EndLevel : MonoBehaviour
         //UIManager.instance.DarkenTransitionImage(); //
 
         yield return new WaitForSeconds(LoadLevelTime); //Time to fade out
+        UIManager.instance.nextLevel = nextLevelName;//Sets next level, defined in inspector
         UIManager.instance.EnableEndLevelPanel(); //
-
+        
         //yield return new WaitForSeconds(LoadLevelTime); // Time to load new level
         //SceneManager.LoadScene(nextLevelName);
     }

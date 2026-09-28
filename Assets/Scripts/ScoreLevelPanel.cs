@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScoreLevelPanel : MonoBehaviour
 {
 
-    private string nextLevel;
+    public string nextLevel { get; set; }
 
     private void Start()
     {
@@ -21,12 +22,20 @@ public class ScoreLevelPanel : MonoBehaviour
         {
             // Restarts the game.
             //RestartGame();
+            Debug.Log("Next level: " + nextLevel);
         }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
             // Returns to the main menu.
             //ReturnToMenu();
+            NextLevel();
+            Debug.Log("Next level: " + nextLevel);
         }
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(nextLevel);
     }
 
 }

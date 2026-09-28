@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
     [Header("End Level Panel")]
     [SerializeField] private GameObject endLevelPanel;
     [SerializeField] private TMP_Text maxScoreText;
+    public string nextLevel { get; set; }//Gets next level name
+
 
     [Header("Player")]
     // The player health bar is always visible, so only its value needs to be updated.
@@ -29,9 +31,12 @@ public class UIManager : MonoBehaviour
     [Header("Combo Counter")]
     [SerializeField] private TMP_Text comboCounterText;
 
+
+
     private void Awake()
     {
         instance = this;
+        nextLevel = endLevelPanel.GetComponent<ScoreLevelPanel>().nextLevel;
     }
 
     void Start()
@@ -107,6 +112,15 @@ public class UIManager : MonoBehaviour
     public void EnableEndLevelPanel()
     {
         endLevelPanel.SetActive(true);
+        endLevelPanel.GetComponent<ScoreLevelPanel>().nextLevel = nextLevel;
+
+        //ScoreLevelPanel.nextLevel = nextLevel;
     }
 
+    //Load next level, defined in EndLevel
+    /*public void EnableEndLevelPanel(string _nextLevel)
+    {
+        ScoreLevelPanel.nextLevel = _nextLevel;
+        endLevelPanel.SetActive(true);
+    }*/
 }

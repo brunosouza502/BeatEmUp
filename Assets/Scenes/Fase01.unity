@@ -1508,7 +1508,7 @@ GameObject:
   - component: {fileID: 619990422}
   - component: {fileID: 619990424}
   m_Layer: 5
-  m_Name: EndLevelPanel
+  m_Name: ScoreLevelPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
