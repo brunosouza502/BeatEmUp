@@ -15254,6 +15254,17 @@ MonoBehaviour:
   maxY: 0.42
   maxAttackInterval: 0.3
   maxComboTime: 1
+  comboSet:
+  - hits:
+    - animationName: Punch1
+      triggerAnim: socando
+      damage: 1
+      button: J
+    - animationName: Punch2
+      triggerAnim: combo-soco
+      damage: 1
+      button: J
+  - hits: []
   maxSequenceTime: 1
   animationName:
   - socando

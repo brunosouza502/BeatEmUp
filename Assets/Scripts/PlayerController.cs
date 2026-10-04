@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxComboTime; // Time available for the player to continue the combo, configured in the Unity Inspector.
     private float currentComboTime;
     private int totalCombo; // Stores the player's longest combo, displayed at the end of the game.
+    [SerializeField] private Combo[] comboSet;
 
     /*public int TotalCombo
     {
