@@ -1164,7 +1164,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "A cidade precisa de voc\xEA!\nAperte R para reiniciar ou Entter para prosseguir"
+  m_text: Aperte R para reiniciar ou Enter para prosseguir
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d4bc084be6b4cd54cbc38e98b14fae7b, type: 2}
   m_sharedMaterial: {fileID: -2809621980342470412, guid: d4bc084be6b4cd54cbc38e98b14fae7b, type: 2}
@@ -15264,7 +15264,11 @@ MonoBehaviour:
       triggerAnim: combo-soco
       damage: 1
       button: J
-  - hits: []
+  - hits:
+    - animationName: Kick1
+      triggerAnim: chutando
+      damage: 2
+      button: K
   maxSequenceTime: 1
   animationName:
   - socando

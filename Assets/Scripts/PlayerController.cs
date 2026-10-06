@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private int totalCombo; // Stores the player's longest combo, displayed at the end of the game.
     [SerializeField] private Combo[] comboSet;
     private int attackIndex;// Index of the current attack in the combo set,whether is punch (J) or kick (K).
+    private string currentAttackGroup;//Check if attack is punch or kick to control their sequence
 
     /*public int TotalCombo
     {
@@ -186,51 +187,21 @@ public class PlayerController : MonoBehaviour
 
     private void RunAttackAnimations()
     {
-        if (Input.GetKeyDown(KeyCode.J) && canAttack)
+        for(int i = 0; i < comboSet.Length; i++)
         {
-            attackIndex = 0; // Punch attack index.
-            Attack(attackIndex);
+            if (Input.GetButtonDown(comboSet[i].hits[0].button) && canAttack)
+            {
+                Attack(i);
+                break;
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.K) && canAttack)
-            {
-                attackIndex = 1; // Kick attack index.
-                Attack(attackIndex);
-            }
-        else
-            return; // No attack input detected.
-        /*{
-            //Debug.Log("Pressed: " + combo[sequence].hits[sequence].button);
-            //animator.SetTrigger(comboSet[0].hits[sequence].triggerAnim);
-            canAttack = false; // Prevents another attack until the attack timer resets.
-            SoundManager.instance.punchImpact.Play();
-
-            if (combo <= 0)
-            {
-                sequence = 0;
-            }
-
-            //animator.SetTrigger(animationName[sequence]);
-
-            if (combo > 0)
-            {
-                sequence++;
-                //animator.SetTrigger(animationName[sequence]);
-
-                if (sequence >= animationName.Length)
-                {
-                    sequence = 0;
-                    //animator.SetTrigger(animationName[sequence]);
-                }
-            }
-            animator.SetTrigger(comboSet[attackIndex].hits[sequence].triggerAnim);
-            Debug.Log("Sequence atual: " + sequence);
-        }*/
         
     }
 
     private void Attack(int _attackIndex)
     {
         canAttack = false; // Prevents another attack until the attack timer resets.
+        
         SoundManager.instance.punchImpact.Play();
 
         if (combo <= 0)
@@ -238,14 +209,12 @@ public class PlayerController : MonoBehaviour
             sequence = 0;
         }
 
-        //animator.SetTrigger(animationName[sequence]);
-
         if (combo > 0)
         {
             sequence++;
             //animator.SetTrigger(animationName[sequence]);
 
-            if (sequence >= animationName.Length)
+            if (sequence >= comboSet[_attackIndex].hits.Length)
             {
                 sequence = 0;
                 //animator.SetTrigger(animationName[sequence]);
