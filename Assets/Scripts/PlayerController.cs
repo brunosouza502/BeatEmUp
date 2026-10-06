@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private float currentComboTime;
     private int totalCombo; // Stores the player's longest combo, displayed at the end of the game.
     [SerializeField] private Combo[] comboSet;
+    private int attackIndex;// Index of the current attack in the combo set,whether is punch (J) or kick (K).
 
     /*public int TotalCombo
     {
@@ -77,6 +78,9 @@ public class PlayerController : MonoBehaviour
             {
                 ReadInput();
                 RunAnimations();
+
+                RunAttackAnimations();
+
                 FlipPlayer();
                 MovePlayer();
 
@@ -178,10 +182,25 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("parado", movementInput.magnitude == 0);
         animator.SetBool("andando", movementInput.magnitude > 0);
 
-        // Check whether the player is attacking.
-        // Attacks: J - Punch; K - Kick.
+    }
+
+    private void RunAttackAnimations()
+    {
         if (Input.GetKeyDown(KeyCode.J) && canAttack)
         {
+            attackIndex = 0; // Punch attack index.
+            Attack(attackIndex);
+        }
+        else if (Input.GetKeyDown(KeyCode.K) && canAttack)
+            {
+                attackIndex = 1; // Kick attack index.
+                Attack(attackIndex);
+            }
+        else
+            return; // No attack input detected.
+        /*{
+            //Debug.Log("Pressed: " + combo[sequence].hits[sequence].button);
+            //animator.SetTrigger(comboSet[0].hits[sequence].triggerAnim);
             canAttack = false; // Prevents another attack until the attack timer resets.
             SoundManager.instance.punchImpact.Play();
 
@@ -203,19 +222,37 @@ public class PlayerController : MonoBehaviour
                     //animator.SetTrigger(animationName[sequence]);
                 }
             }
-            animator.SetTrigger(animationName[sequence]);
+            animator.SetTrigger(comboSet[attackIndex].hits[sequence].triggerAnim);
             Debug.Log("Sequence atual: " + sequence);
+        }*/
+        
+    }
 
-        }
+    private void Attack(int _attackIndex)
+    {
+        canAttack = false; // Prevents another attack until the attack timer resets.
+        SoundManager.instance.punchImpact.Play();
 
-        if (Input.GetKeyDown(KeyCode.K) && canAttack)
+        if (combo <= 0)
         {
-            animator.SetTrigger("chutando");// The "chutando" trigger is defined in the Animator.
-            canAttack = false; // Prevents another attack until the attack timer resets.
-
-            // Play sound.
-            SoundManager.instance.kickImpact.Play();
+            sequence = 0;
         }
+
+        //animator.SetTrigger(animationName[sequence]);
+
+        if (combo > 0)
+        {
+            sequence++;
+            //animator.SetTrigger(animationName[sequence]);
+
+            if (sequence >= animationName.Length)
+            {
+                sequence = 0;
+                //animator.SetTrigger(animationName[sequence]);
+            }
+        }
+        animator.SetTrigger(comboSet[_attackIndex].hits[sequence].triggerAnim);
+        Debug.Log("Sequence atual: " + sequence);
     }
 
     // Turns the player toward the movement direction by flipping the sprite.
