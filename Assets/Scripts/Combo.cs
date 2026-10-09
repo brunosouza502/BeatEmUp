@@ -6,24 +6,30 @@ using System;
 public class Combo
 {
     public Hit[] hits; // An array of Hit objects that make up the combo.
+    //public string inputButton;
 
     [HideInInspector]
-    public int currentHit;
+    public int currentHit = 0;
     public string attackGroup;
 
     public void Advance()//Index control
     {
+        Debug.Log("Advance() BEFORE = " + currentHit);
+
         currentHit++;
 
         if (currentHit >= hits.Length)
         {
             currentHit = 0;
         }
+
+        Debug.Log("Advance() AFTER = " + currentHit);
     }
 
     public void Reset()
     {
         currentHit = 0;
+        Debug.Log("Reset() chamado em " + attackGroup);
     }
 }
 

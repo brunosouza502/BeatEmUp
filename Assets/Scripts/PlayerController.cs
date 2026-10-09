@@ -28,9 +28,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxComboTime; // Time available for the player to continue the combo, configured in the Unity Inspector.
     private float currentComboTime;
     private int totalCombo; // Stores the player's longest combo, displayed at the end of the game.
-    [SerializeField] private Combo[] comboSet;
+    
+    [SerializeField] private Combo[] comboSet;//Sequence of puncher and kicks
     private int attackIndex;// Index of the current attack in the combo set,whether is punch (J) or kick (K).
     private string currentAttackGroup;//Check if attack is punch or kick to control their sequence
+
+    public Combo currentCombo { get; private set; }//Store current hit (punch or kick) and advace the sequence when the player keeps pressing the attack button to count combo.
 
     /*public int TotalCombo
     {
@@ -141,7 +144,10 @@ public class PlayerController : MonoBehaviour
                 combo = 0; // Resets the player's combo.
                 //currentComboTime = maxComboTime; // Resets the combo timer.
 
-                sequence = 0;//Resets this counter to start over punch sequence over
+                foreach (Combo comboData in comboSet)
+                {
+                    comboData.Reset(); // Resets the current hit in the combo.
+                }
 
                 UIManager.instance.DisableCombo();
 
@@ -188,40 +194,53 @@ public class PlayerController : MonoBehaviour
     private void RunAttackAnimations()
     {
         for(int i = 0; i < comboSet.Length; i++)
-        {
-            if (Input.GetButtonDown(comboSet[i].hits[0].button) && canAttack)
+        {   /*comboSet[i].hits[0].button*/
+            if (Input.GetButtonDown(comboSet[i].hits[comboSet[i].currentHit].button) && canAttack)// Change to Currenthit- comboSet[i].hits[comboSet.currentHit].button
             {
-                Attack(i);
+                ExecuteAttack(comboSet[i]);
+                this.currentCombo = comboSet[i];
                 break;
             }
         }
         
     }
 
-    private void Attack(int _attackIndex)
+
+    void ExecuteAttack(Combo currentCombo)
     {
         canAttack = false; // Prevents another attack until the attack timer resets.
-        
-        SoundManager.instance.punchImpact.Play();
+        //this.currentCombo = currentCombo;
+
+        if (currentAttackGroup != currentCombo.attackGroup)
+        {
+            currentCombo.Reset();
+            currentAttackGroup = currentCombo.attackGroup;
+            //Debug.Log("Current Attack group: " + currentCombo.attackGroup);
+        }//else
 
         if (combo <= 0)
         {
-            sequence = 0;
+            currentCombo.Reset();
+            Debug.Log("Combo <= 0 ");
         }
 
-        if (combo > 0)
+        animator.SetTrigger(currentCombo.hits[currentCombo.currentHit].triggerAnim);
+        Debug.Log("Current trigger animation: " + currentCombo.hits[currentCombo.currentHit].triggerAnim
+                + " Current Attack group: " + currentCombo.attackGroup
+                + " Current combo sequence: " + currentCombo.currentHit
+                + " Current combo: " + combo
+                );
+
+        /*if (combo > 0)
         {
-            sequence++;
-            //animator.SetTrigger(animationName[sequence]);
+            currentCombo.Advance();
+            //Debug.Log("Current combo sequence: " + currentCombo.currentHit);
+            Debug.Log("Combo > 0 ");
+        }*/
+        //else 
 
-            if (sequence >= comboSet[_attackIndex].hits.Length)
-            {
-                sequence = 0;
-                //animator.SetTrigger(animationName[sequence]);
-            }
-        }
-        animator.SetTrigger(comboSet[_attackIndex].hits[sequence].triggerAnim);
-        Debug.Log("Sequence atual: " + sequence);
+        SoundManager.instance.punchImpact.Play();
+
     }
 
     // Turns the player toward the movement direction by flipping the sprite.

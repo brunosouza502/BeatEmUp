@@ -15256,19 +15256,23 @@ MonoBehaviour:
   maxComboTime: 1
   comboSet:
   - hits:
-    - animationName: Punch1
+    - attackType: Punch1
       triggerAnim: socando
       damage: 1
-      button: J
-    - animationName: Punch2
+      button: Punch
+    - attackType: Punch1
       triggerAnim: combo-soco
       damage: 1
-      button: J
+      button: Punch
+    currentHit: 0
+    attackGroup: Punch
   - hits:
-    - animationName: Kick1
+    - attackType: Kick01
       triggerAnim: chutando
       damage: 2
-      button: K
+      button: Kick
+    currentHit: 0
+    attackGroup: Kick
   maxSequenceTime: 1
   animationName:
   - socando

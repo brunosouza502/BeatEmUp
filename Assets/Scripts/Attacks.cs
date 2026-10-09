@@ -26,7 +26,8 @@ public class Attacks : MonoBehaviour
         {
             other.gameObject.GetComponent<EnemyHealth>().TakeDamage(attackDamage); // Causes damage to the enemy.
             playerController.CountCombo(); // Calls PlayerController.CountCombo() to count the player's combo.
-
+            playerController.currentCombo.Advance(); // Advances the current hit in the combo.
+            Debug.Log("Hit advance: " + playerController.currentCombo.currentHit);
             //Debug.Log("Enemy took damage");
         }
         
