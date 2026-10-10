@@ -239,7 +239,7 @@ public class PlayerController : MonoBehaviour
         }*/
         //else 
 
-        SoundManager.instance.punchImpact.Play();
+        currentCombo.hits[currentCombo.currentHit].hitAudio.Play();
 
     }
 

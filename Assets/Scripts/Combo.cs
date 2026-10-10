@@ -41,4 +41,6 @@ public class Hit
     public string triggerAnim;// The name of the animation trigger for this hit.
     public int damage;
     public string button; // The button that needs to be pressed to execute this hit.
+
+    public AudioSource hitAudio; // The audio source that plays when this hit is executed. Defined in Inspector, selected from the SoundManager scriptable object.
 }

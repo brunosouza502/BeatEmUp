@@ -15260,10 +15260,12 @@ MonoBehaviour:
       triggerAnim: socando
       damage: 1
       button: Punch
+      hitAudio: {fileID: 1756220396}
     - attackType: Punch1
       triggerAnim: combo-soco
       damage: 1
       button: Punch
+      hitAudio: {fileID: 1756220396}
     currentHit: 0
     attackGroup: Punch
   - hits:
@@ -15271,6 +15273,7 @@ MonoBehaviour:
       triggerAnim: chutando
       damage: 2
       button: Kick
+      hitAudio: {fileID: 579393923}
     currentHit: 0
     attackGroup: Kick
   maxSequenceTime: 1
