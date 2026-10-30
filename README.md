@@ -25,3 +25,5 @@ Credits:
 This project was developed as part of the Udemy course "Jogo de Luta de Rua (Beat'em Up) na Unity". 
 Some assets used in the project were recommended by the course and are used for educational and portfolio purposes.
 Udemy Course: https://www.udemy.com/course/jogo-de-luta-de-rua-na-unity/
+
+Demo build in "BuildTest" directory
